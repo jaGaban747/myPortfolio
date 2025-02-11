@@ -1,18 +1,21 @@
-export async function POST(request) {
-    const { name, email, subject, message } = await request.json();
-  
-    // Simulate sending an email or saving to a database
+export async function POST(req) {
+  try {
+    const { name, email, subject, message } = await req.json();
+
     console.log("Form Submission Received:");
     console.log("Name:", name);
     console.log("Email:", email);
     console.log("Subject:", subject);
     console.log("Message:", message);
-  
-    // Return a success response
+
     return new Response(JSON.stringify({ message: "Form submitted successfully!" }), {
       status: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: "Something went wrong" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
     });
   }
+}

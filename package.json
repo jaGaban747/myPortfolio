@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "framer-motion": "^12.4.1",
-    "next": "^15.1.6",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "next": "^14.2.24",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-icons": "^5.4.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "eslint": "^9.20.1",
-    "eslint-config-next": "15.1.6",
+    "@eslint/config-array": "^latest",
+    "eslint": "^latest",
+    "eslint-config-next": "^latest",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.17"
   }
 }

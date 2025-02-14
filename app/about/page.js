@@ -41,7 +41,7 @@ export default function About() {
           </p>  
 
 <p className="mt-4 text-lg">  
-  My days are fueled by self-taught experiments in AI and late-night Python scripts; my nights are for grounding myself in mindfulness and stories that spark wonder. To me, engineering isn’t just about solving problems — it’s about staying curious enough to ask better questions, whether I’m debugging a sensor network or sitting cross-legged with a fraying paperback.  
+  My days are fueled by self-taught experiments in AI and late-night Python scripts; my nights are for grounding myself in mindfulness and stories that spark wonder. To me, engineering isn’t just about solving problems — it’s about staying curious enough to ask better questions.  
 </p> 
         </motion.div>
 

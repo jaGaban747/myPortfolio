@@ -126,7 +126,7 @@ export default function About() {
             className="relative"
           >
             <div className="absolute -left-10 top-2 w-6 h-6 bg-yellow-400 rounded-full border-4 border-gray-900"></div>
-            <h3 className="text-2xl font-bold">📜 WAZIUP IoT Training Program</h3>
+            <h3 className="text-2xl font-bold">📜 WAZIUP IoT Training Program(AFRALTI)</h3>
             <p className="text-gray-400">Completed</p>
             <ul className="mt-2 list-disc pl-5 text-gray-300">
               <li>Developed <strong>IoT-based applications</strong> using sensors and microcontrollers</li>

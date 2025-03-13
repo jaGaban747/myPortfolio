@@ -35,8 +35,7 @@ export default function About() {
           <p className="mt-4 text-lg">
           I’m an <strong>Electrical & Electronics Engineer</strong> with a strong foundation in  
           <strong> circuit design, control systems, and telecommunications</strong>.
-          By day, I’m knee-deep in research — dissecting machine learning models, prototyping IoT systems, or testing algorithms that blur the lines between circuits and intelligence. By night, I’m either meditating to reset my mind  
-  or dissecting films frame-by-frame. To me, engineering isn’t just about solving problems — it’s about staying curious enough to ask better questions.  
+          My journey is all about continuous learning — whether it's diving into the latest advancements in machine learning, exploring the intricacies of IoT systems, or trying to learn a new skill that sparked my interest. When I'm not immersed in the world of tech, you'll find me unwinding with meditation or diving deep into the art of cinema, frame by frame. For me, engineering is more than just problem-solving — it's about staying curious and always asking the right questions.  
           </p>  
 
 

@@ -30,11 +30,11 @@ export default function Home() {
           transition={{ duration: 0.7 }}
           className="max-w-5xl text-5xl font-medium leading-[1.05] tracking-[-0.055em] sm:text-6xl md:text-8xl"
         >
-          Building at the intersection of{" "}
+          From circuits to{" "}
           <span className="underline decoration-[var(--accent)] decoration-[8px] underline-offset-[8px] md:decoration-[12px] md:underline-offset-[12px]">
-            technology
-          </span>{" "}
-          and possibility.
+            cloud
+          </span>
+          : building intelligent systems that work in the real world.
         </motion.h1>
 
         <motion.div
@@ -44,8 +44,8 @@ export default function Home() {
           className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
         >
           <p className="max-w-xl text-lg leading-relaxed text-[var(--muted)] md:text-xl">
-            Exploring cloud infrastructure, DevOps, software engineering, and
-            AI to turn ideas into useful products and practical solutions.
+            Working across cloud infrastructure, DevOps, software engineering and AI
+            to turn ideas into products that solve real problems.
           </p>
 
           <a

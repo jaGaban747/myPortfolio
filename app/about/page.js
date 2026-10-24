@@ -5,29 +5,86 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 
+
 const skills = [
   {
-    title: "AI",
+    title: "AI & Data Analytics",
     items: [
+      "Agentic AI",
+      "IBM watsonx.ai",
+      "IBM Watson Orchestrate",
+      "Azure OpenAI",
       "Generative AI",
-      "MCP",
-      "AI ethics and gov",
+      "Microsoft Fabric",
+      "Power BI",
+      "Pandas",
+      "Streamlit",
     ],
   },
   {
     title: "Cloud & DevOps",
     items: [
-      "Cloud Computing(Azure, AWS)",
-      "DevOps",
+      "Microsoft Azure",
+      "IBM Cloud",
+      "AWS",
+      "Docker",
       "Kubernetes",
-      "Containerization",
-      "Application Deployment",
+      "API Management",
     ],
+  },
+  {
+    title: "Software Engineering",
+    items: [
+      "Python",
+      "JavaScript",
+      "Node.js",
+      "Next.js",
+      "React",
+      "REST APIs",
+      "Git",
+      "Java",
+    ],
+  },
+  {
+    title: "Electrical Engineering & Telecoms",
+    items: [
+      "Circuit Design",
+      "Control Systems",
+      "IoT",
+      "Edge Computing",
+      "Network Optimization",
+    ],
+  },
+  {
+    title: "Currently learning",
+    items: ["Kubernetes", "Openshift", "Cisco networking (CCNA)"],
   },
 ];
 
 
+
 const education = [
+  {
+    title: "Power Learn Project (PLP) Africa",
+    period: "September 2026 to Present",
+    subtitle: "1 Million Devs for Africa · Software Engineering Programme",
+    details: [
+      "Completed ethical AI work, including an Ethical Guardian Report and a creditworthiness redesign for a fintech scenario.",
+      "Coursework covers data science, Python, web development, data analytics with AI, software testing, and product management and design.",
+    ],
+  },
+
+    {
+    title: "IBM/MCSQStudio Training Programme",
+    period: "July - October 2026",
+    subtitle: "Product Development Pathway",
+    details: [
+      "Completed IBM training in watsonx.ai Configuration and Administration, AI Infrastructure on IBM Cloud, Red Hat AI Solutions on IBM Cloud, and Cloud Pak for Integration.",
+      "Built Msaidizi and Mkurugenzi, an electricity customer support assistant and an internal analytics copilot, using watsonx.ai and Watson Orchestrate.",
+      "Attended IBM Dev Day at IBM Research Africa in Nairobi.",
+    ],
+  },
+  
   {
     title: "University of Nairobi",
     period: "2019 – 2025",
@@ -35,6 +92,16 @@ const education = [
     details: [
       "Academic grounding in electrical and electronics engineering.",
       "Areas of study include telecommunications, circuit design, automation, and power systems.",
+    ],
+  },
+  {
+    title: "UoN Company Series Programme",
+    period: "Oct 2024 – Mar 2025",
+    subtitle: "Second Cohort · University of Nairobi / AFRETEC",
+    details: [
+      "Participated in an industry-academia programme connecting engineering students with industry professionals.",
+      "Engaged in workshops, industry discussions, and practical problem-solving activities.",
+      "Developed teamwork, innovation, and professional communication skills through industry-focused learning.",
     ],
   },
   {
@@ -59,25 +126,38 @@ const education = [
 
 const experience = [
   {
+    title: "Hackathon Participant",
+    organisation: "Microsoft Data + AI Kenya Hackathon",
+    period: "Mar to Apr 2025",
+    subtitle: "MSE Insights Copilot",
+    details: [
+      "Built MSE Insights Copilot, an AI assistant that turns market data into plain language insights.",
+      "Worked with Azure OpenAI and Microsoft Fabric to ground the assistant's answers in real data.",
+      "Presented the solution to a panel of judges within the hackathon's time limit.",
+    ],
+  },
+  
+  {
+    title: "Intern",
+    organisation: "Solarise Insight Limited",
+    period: "Oct 2024 – Feb 2025",
+    details: [
+      "Gained practical exposure to solar energy solutions.",
+      "Participated in energy audits and site assessments for solar projects.",
+      "Contributed to cost-benefit analysis for solar implementations.",
+    ],
+  },
+  {
     title: "Research Consultant",
     organisation: "WorldQuant",
     period: "Oct 2023 – Jun 2024",
     details: [
-      "Led the WorldQuant Brain Alphathon at the University of Nairobi.",
-      "Worked on quantitative research, data analysis, and the BRAIN API.",
-      "The original profile also mentions a 98% model-accuracy result; retain this only if you can substantiate it.",
+      "Organized and ran the WorldQuant Brain Alphathon at the University of Nairobi, bringing students into quantitative research.",
+      "Used the BRAIN platform and API to research and develop alpha strategies for quantitative models.",
+      "Analyzed large datasets to find patterns, trends and anomalies for model development.",
     ],
   },
-  {
-    title: "Intern",
-    organisation: "Solarise Insight Limited",
-    period: "Oct 2024 – Present",
-    details: [
-      "Practical exposure to solar energy solutions.",
-      "Energy audits and site assessments for solar projects.",
-      "Cost-benefit analysis for solar implementations.",
-    ],
-  },
+
 ];
 
 function SectionHeading({ number, children }) {
@@ -157,10 +237,10 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="max-w-4xl text-5xl font-medium leading-[1.08] tracking-[-0.05em] md:text-7xl"
         >
-          Engineer by training.
+          Trained on circuits.
           <br />
           <span className="underline decoration-[var(--accent)] decoration-[8px] underline-offset-4 md:decoration-[12px]">
-            Curious by nature.
+            Building for the cloud.
           </span>
         </motion.h1>
 
@@ -199,30 +279,30 @@ export default function About() {
             <div className="mt-5 space-y-4 text-base leading-8 text-[var(--muted)] md:text-lg">
               
               <p>
-                I'm an Electrical & Electronics Engineer with a foundation in
-                electronics, control systems, and telecommunications. I'm interested
-                in how engineering principles and software can come together to solve
-                practical problems and create useful technology.
+                I&apos;m an Electrical and Electronics Engineer who builds AI and
+                cloud systems. My training in circuits, control systems and
+                telecommunications shapes how I think about system design and development: I want systems
+                that are measurable, reliable and useful to the people who
+                depend on them.
               </p>
 
               <p>
-                I'm building my skills across software engineering, cloud infrastructure,
-                DevOps, artificial intelligence, and data analysis. I enjoy understanding
-                how systems work, experimenting with new tools, and turning technical
+                Recently I built a three agent AI customer support system for an
+                electricity utility, took part in the Microsoft Data + AI Kenya
+                Hackathon, and for my finaly year undergraduate degree researched task offloading for edge computing in
+                6G networks.I enjoy understanding
+                experimenting with new tools, and turning technical
                 ideas into practical applications.
               </p>
 
               <p>
-                My project work spans an AI-enabled electricity customer-support
-                prototype developed through an IBM capstone and research into
-                optimization for edge computing and task offloading in 6G networks.
-                These experiences reflect my interest in connecting engineering,
-                intelligent systems, and software-driven product development.
+                Right now I&apos;m going deeper on cloud, DevOps and data
+                analytics through PLP Africa and KodeKloud, and I&apos;m
+                looking for a role where I can put them to work.
               </p>
 
               <p>
-                Outside technology, I value reflection, meditation, film
-                and working out. I do have my own personal youtube channel dedicated to keep me motivated haha.
+                Outside work, I value reflection, meditation, film and working out.
               </p>
             </div>
           </motion.div>
@@ -230,7 +310,7 @@ export default function About() {
       </section>
 
       <section className="mb-20">
-        <SectionHeading number="01">Areas I'm exploring</SectionHeading>
+        <SectionHeading number="01">What I work with</SectionHeading>
 
         <div className="grid gap-8 sm:grid-cols-2">
           {skills.map((group, index) => (

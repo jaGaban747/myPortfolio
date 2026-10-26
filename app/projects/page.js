@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 const project = {
-  title: "MSE Insights Copilot",
+  title: "MSE Insights",
   subtitle: "Microsoft Data + AI Kenya Hackathon",
   description:
     "An AI-powered financial insights platform designed to help Kenyan micro and small enterprises explore their business data and make more informed decisions.",
@@ -102,7 +102,7 @@ export default function Projects() {
           <br />
           and{" "}
           <span className="underline decoration-[var(--accent)] decoration-[8px] underline-offset-4 md:decoration-[12px]">
-            things I've built.
+                      things I&apos;ve built.
           </span>
         </motion.h1>
 
@@ -112,11 +112,20 @@ export default function Projects() {
           transition={{ duration: 0.5, delay: 0.15 }}
           className="mt-8 max-w-2xl text-lg leading-relaxed text-[var(--muted)]"
         >
-          A growing collection of work across software, AI, data, and
-          engineering. Each project is an opportunity to learn, experiment,
-          and solve a practical problem.
+          An AI insights tool built at a hackathon, final year research on 6G
+          edge computing, and an AI customer support system for an electricity
+          utility.
         </motion.p>
       </section>
+
+      {/* NEW: section 01 heading */}
+      <div className="mb-8 flex items-center gap-4">
+        <span className="text-sm text-[var(--muted)]">01</span>
+        <h2 className="text-2xl font-medium tracking-tight md:text-3xl">
+          Data & AI
+        </h2>
+        <div className="h-px flex-1 bg-[var(--border)]" />
+      </div>
 
       <motion.article
         initial={{ opacity: 0, y: 18 }}
@@ -431,6 +440,15 @@ export default function Projects() {
                 className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-5 py-3 text-sm font-medium transition-colors hover:border-[var(--foreground)]"
               >
                 Download project report (PDF)
+                <ArrowUpRight size={15} />
+              </a>
+              <a
+                href="https://stimasaidizi-3xf7dh9e52sstskjqn6exv.streamlit.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium transition-transform hover:-translate-y-0.5"
+              >
+                Live demo
                 <ArrowUpRight size={15} />
               </a>
             </div>

@@ -139,7 +139,7 @@ export default function Contact() {
             className="mt-8 max-w-md text-lg leading-relaxed text-[var(--muted)]"
           >
             Whether it is an opportunity, a collaboration, or an interesting
-            idea, I'd be glad to hear from you.
+            idea, I&apos;d be glad to hear from you.
           </motion.p>
 
           <motion.div
@@ -209,7 +209,7 @@ export default function Contact() {
               Send a message
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-              Fill in the details below and I'll get back to you.
+              Fill in the details below and I&apos;ll get back to you.
             </p>
           </div>
 

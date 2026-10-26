@@ -1,70 +1,65 @@
+
 "use client";
+
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import {
+  ArrowDownRight,
+  ArrowUpRight,
+  Github,
+  Linkedin,
+  Mail,
+} from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-      <motion.h1 
-        initial={{ opacity: 0, y: -20 }} 
-        animate={{ opacity: 1, y: 0 }} 
-        transition={{ duration: 0.8 }}
-        className="text-5xl font-bold"
-      >
-        Leon Changara Chemwor Odari
-      </motion.h1>
-      <motion.h2 
-        initial={{ opacity: 0, y: -20 }} 
-        animate={{ opacity: 1, y: 0 }} 
-        transition={{ duration: 1 }}
-        className="text-xl text-gray-400 mt-4"
-      >
-        Electrical & Electronics Engineer
-      </motion.h2>
-      <motion.p 
-        initial={{ opacity: 0, y: -20 }} 
-        animate={{ opacity: 1, y: 0 }} 
-        transition={{ duration: 1.2 }}
-        className="mt-4 text-center max-w-2xl"
-      >
-        Passionate about AI, Machine Learning, and Renewable Energy (Solar).
-        Constantly searching on how I can find solutions to problems around us to make life a bit more enjoyable.
-      </motion.p>
-      <div className="mt-6 flex space-x-4">
-        <a href="https://github.com/jaGaban747" target="_blank" rel="noopener noreferrer">
-          <FaGithub className="text-3xl hover:text-gray-500 transition" />
-        </a>
-        <a href="https://linkedin.com/in/leon-c-b17967232" target="_blank" rel="noopener noreferrer">
-          <FaLinkedin className="text-3xl hover:text-blue-400 transition" />
-        </a>
-        <a href="mailto:leon.changara@gmail.com">
-          <FaEnvelope className="text-3xl hover:text-red-400 transition" />
-        </a>
-        {/* Plum Text Logo */}
-        <a 
-          href="https://secure.plum.io/en/p/t-y5rKKuCBEmcr1cMU0zNA" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="hover:opacity-80 transition"
+    <main className="mx-auto min-h-screen max-w-7xl px-6 pb-20 pt-20 md:px-12 md:pt-28">
+      <section className="flex min-h-[70vh] flex-col justify-center">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 flex items-center gap-3 text-sm uppercase tracking-[0.2em] text-[var(--muted)]"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 500 200"
-            className="w-8 h-8"
+          <span className="h-2 w-2 rounded-full bg-[var(--accent)] ring-1 ring-black/10" />
+          Electrical & Electronics Engineer
+        </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="max-w-5xl text-5xl font-medium leading-[1.05] tracking-[-0.055em] sm:text-6xl md:text-8xl"
+        >
+          From circuits to{" "}
+          <span className="underline decoration-[var(--accent)] decoration-[8px] underline-offset-[8px] md:decoration-[12px] md:underline-offset-[12px]">
+            cloud
+          </span>
+          : building intelligent systems that work in the real world.
+        </motion.h1>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
+        >
+          <p className="max-w-xl text-lg leading-relaxed text-[var(--muted)] md:text-xl">
+            Working across cloud infrastructure, DevOps, software engineering and AI
+            to turn ideas into products that solve real problems.
+          </p>
+
+          <a
+            href="/projects"
+            className="group inline-flex w-fit items-center gap-3 rounded-full bg-[var(--accent)] px-6 py-4 text-sm font-medium transition-transform duration-200 hover:-translate-y-1"
           >
-            <text
-              x="0"
-              y="150"
-              fontFamily="Arial"
-              fontSize="200"
-              fontWeight="bold"
-              fill="#8A2BE2"
-            >
-              plum
-            </text>
-          </svg>
-        </a>
-      </div>
-    </div>
+            Explore my work
+            <ArrowDownRight
+              size={18}
+              className="transition-transform group-hover:translate-x-1 group-hover:translate-y-1"
+            />
+          </a>
+        </motion.div>
+      </section>
+    </main>
   );
 }

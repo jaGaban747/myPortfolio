@@ -1,395 +1,485 @@
+
 "use client";
+
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { 
-  Github as GitHub, 
-  ExternalLink, 
-  Calendar, 
-  Award, 
-  Clock, 
-  Code, 
-  Users, 
-  CheckCircle, 
-  Terminal, 
-  Database 
+import {
+  Github,
+  ArrowUpRight,
+  ArrowDownRight,
+  ChevronDown,
+  Award,
+  Clock,
+  Database,
+  CheckCircle,
+  Terminal,
 } from "lucide-react";
-import { FaYoutube } from "react-icons/fa";
+
+const project = {
+  title: "MSE Insights",
+  subtitle: "Microsoft Data + AI Kenya Hackathon",
+  description:
+    "An AI-powered financial insights platform designed to help Kenyan micro and small enterprises explore their business data and make more informed decisions.",
+  longDescription:
+    "Developed during the Microsoft Data + AI Kenya Hackathon, the project combines financial analytics with a conversational AI experience, helping users explore business information through dashboards and natural-language queries.",
+  role: "Lead Developer on a three-person team",
+  event: "Hack Together: The Microsoft Data + AI Kenya Hack",
+  period: "March – April 2025",
+  technologies: [
+    "Microsoft Fabric",
+    "Azure OpenAI",
+    "Python",
+    "Streamlit",
+    "Power BI",
+  ],
+  github: "https://github.com/jaGaban747/MSE-Insights",
+  demo: "https://youtu.be/6mh-nzDwF2c",
+  screenshot: "/mse-insights-screenshot.png",
+  features: [
+    "Income and expense summary dashboard",
+    "Daily cash-flow trend visualisation",
+    "AI assistant for natural-language queries",
+    "Semantic search for transactions",
+    "Microsoft Fabric Lakehouse integration",
+  ],
+  challenges: [
+    "Working within limited Fabric capacity",
+    "Managing a tight hackathon timeline",
+    "Designing an intuitive experience for non-technical users",
+  ],
+  learnings: [
+    "Integrating tools across the Microsoft Fabric ecosystem",
+    "Working with AI-powered financial analytics",
+    "Designing dashboards for business decision-making",
+    "Exploring natural-language interfaces for data",
+  ],
+};
+
+function DetailList({ title, icon: Icon, items }) {
+  return (
+    <div>
+      <h3 className="mb-4 flex items-center gap-2 font-medium">
+        <Icon size={18} />
+        {title}
+      </h3>
+      <ul className="space-y-3">
+        {items.map((item) => (
+          <li
+            key={item}
+            className="flex items-start gap-3 text-sm leading-relaxed text-[var(--muted)]"
+          >
+            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default function Projects() {
-  // Track which project has expanded details
-  const [expandedId, setExpandedId] = useState(null);
-  
-  const projects = [
-    {
-      id: 1,
-      title: "MSE Insights Copilot",
-      subtitle: "Microsoft Data + AI Kenya Hackathon Winner",
-      description: "AI-powered financial insights platform for Kenyan Micro & Small Enterprises using AzureAI tools and Microsoft Fabric.",
-      longDescription: "Developed during the Microsoft Data + AI Kenya Hackathon, this solution helps small business owners gain financial clarity through AI-powered analytics and natural language queries, making data-driven decisions accessible to entrepreneurs without technical expertise.",
-      category: "ai",
-      role: "Lead Developer for a team comprising of 3 people",
-      duration: "March 12 - April 11",
-      hackathon: "Hack Together: The Microsoft Data + AI Kenya Hack",
-      challenges: [
-        "Working with limited Fabric Capacity allocation",
-        "Time management as a final year student",
-        "Meeting tight hackathon deadlines",
-        "Building intuitive UX for non-technical users"
-      ],
-      learnings: [
-        "Microsoft Fabric ecosystem integration",
-        "Optimizing AI model performance with limited resources",
-        "Designing accessible financial analytics dashboards",
-        "Implementing natural language processing for financial queries"
-      ],
-      technologies: ["Microsoft Fabric", "Azure OpenAI (GPT-4o)", "Streamlit", "Python", "Power BI"],
-      githubLink: "https://github.com/jaGaban747/MSE-Insights",
-      demoLink: "#",
-      featured: true,
-      features: [
-        "Income vs Expense Summary Dashboard",
-        "Daily Cash Flow Trends Visualization",
-        "AI Copilot Assistant for natural language queries",
-        "Semantic Search for transactions",
-        "Microsoft Fabric Lakehouse integration"
-      ],
-      screenshot: "/mse-insights-screenshot.png" 
-    }
-    // You can add more projects here in the future
-  ];
-
-  const toggleExpand = (id) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { 
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: { type: "spring", stiffness: 100 }
-    }
-  };
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="bg-gradient-to-b from-[#0d1117] via-[#121820] to-[#161b22] text-white min-h-screen px-4 md:px-12 lg:px-20 py-12 overflow-y-auto">
-      {/* Page Header */}
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        className="text-center mb-16"
-      >
-        <h1 className="text-5xl font-bold mb-4">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">
-            My Projects
-          </span>
-        </h1>
-        <p className="text-gray-300 max-w-3xl mx-auto text-lg">
-          Showcasing my work in electrical engineering,data analysis and software development solutions that utilize AI/ML. 
-          Each project represents a challenge overcome and skills applied to real-world problems.
-        </p>
-      </motion.div>
+    <main className="mx-auto max-w-7xl px-6 pb-24 pt-12 md:px-12 md:pt-20">
+      <section className="mb-16">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6 text-sm uppercase tracking-[0.2em] text-[var(--muted)]"
+        >
+          Selected work
+        </motion.p>
 
-      {/* Highlighted Hackathon Project */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="relative mb-12 rounded-2xl overflow-hidden"
+        <motion.h1
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl text-5xl font-medium leading-[1.08] tracking-[-0.05em] md:text-7xl"
+        >
+          Ideas, experiments
+          <br />
+          and{" "}
+          <span className="underline decoration-[var(--accent)] decoration-[8px] underline-offset-4 md:decoration-[12px]">
+                      things I&apos;ve built.
+          </span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="mt-8 max-w-2xl text-lg leading-relaxed text-[var(--muted)]"
+        >
+          An AI insights tool built at a hackathon, final year research on 6G
+          edge computing, and an AI customer support system for an electricity
+          utility.
+        </motion.p>
+      </section>
+
+      {/* NEW: section 01 heading */}
+      <div className="mb-8 flex items-center gap-4">
+        <span className="text-sm text-[var(--muted)]">01</span>
+        <h2 className="text-2xl font-medium tracking-tight md:text-3xl">
+          Data & AI
+        </h2>
+        <div className="h-px flex-1 bg-[var(--border)]" />
+      </div>
+
+      <motion.article
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="overflow-hidden rounded-2xl border border-[var(--border)]"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 animate-pulse opacity-30 rounded-2xl"></div>
-        <div className="relative border border-yellow-500/30 rounded-2xl overflow-hidden backdrop-blur-sm bg-gray-900/70">
-          <div className="p-1 bg-gradient-to-r from-yellow-400 to-orange-500">
-            <div className="bg-gray-900 py-2 px-4 rounded-t-lg">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Award className="text-yellow-400" size={18} />
-                  <span className="text-yellow-400 font-medium text-sm">Hackathon Participant</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar size={16} className="text-gray-400" />
-                  <span className="text-gray-400 text-sm">March-April 2025</span>
-                </div>
-              </div>
-            </div>
+        <div className="flex flex-col gap-3 border-b border-[var(--border)] px-6 py-5 sm:flex-row sm:items-center sm:justify-between md:px-8">
+          <div className="flex items-center gap-3">
+            <span className="rounded-full bg-[var(--accent)] px-3 py-1 text-xs font-medium">
+              Featured project
+            </span>
+            <span className="text-sm text-[var(--muted)]">
+              {project.period}
+            </span>
           </div>
-          
-          <div className="md:grid md:grid-cols-5 gap-6 p-6">
-            {/* Project Image - takes 2/5 of grid */}
-            <div className="group col-span-3 h-[500px] md:h-[600px] relative mb-6 md:mb-0 rounded-lg overflow-hidden">
-              <Image
-                src={projects[0].screenshot}
-                alt={projects[0].title}
-                width={1200}
-                height={800}
-                className="w-full h-full object-contain rounded-lg shadow-2xl group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
-              
-              <div className="absolute bottom-0 left-0 p-4 w-full">
-                <span className="bg-yellow-500 text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                  {projects[0].subtitle}
-                </span>
-              </div>
-            </div>
-            
-            {/* Project Content - takes 3/5 of grid */}
-            <div className="col-span-3">
-              <h2 className="text-3xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-                {projects[0].title}
-              </h2>
-              
-              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                {projects[0].longDescription}
-              </p>
-              
-              <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                <Terminal size={18} className="text-yellow-400" />
-                Key Technologies
+
+          <div className="flex items-center gap-2 text-sm text-[var(--muted)]">
+            <Award size={16} />
+            Hackathon project
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2">
+          <div className="relative min-h-[280px] overflow-hidden bg-[#e9e8df] md:min-h-[480px]">
+            <Image
+              src={project.screenshot}
+              alt={`Screenshot of ${project.title}`}
+              width={1200}
+              height={800}
+              className="h-full w-full object-contain transition-transform duration-500 hover:scale-[1.02]"
+            />
+          </div>
+
+          <div className="flex flex-col justify-center p-6 md:p-10">
+            <p className="text-sm text-[var(--muted)]">{project.subtitle}</p>
+
+            <h2 className="mt-3 text-3xl font-medium tracking-tight md:text-4xl">
+              {project.title}
+            </h2>
+
+            <p className="mt-5 leading-relaxed text-[var(--muted)]">
+              {project.description}
+            </p>
+
+            <div className="mt-7">
+              <h3 className="mb-3 flex items-center gap-2 text-sm font-medium">
+                <Terminal size={17} />
+                Technologies
               </h3>
-              
-              <div className="flex flex-wrap gap-2 mb-6">
-                {projects[0].technologies.map((tech, i) => (
-                  <motion.span 
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: i * 0.1 }}
-                    className="bg-gray-800 px-3 py-1 rounded-full text-sm border border-gray-700 hover:border-yellow-500 hover:text-yellow-400 transition-colors"
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((technology) => (
+                  <span
+                    key={technology}
+                    className="rounded-full border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--muted)]"
                   >
-                    {tech}
-                  </motion.span>
+                    {technology}
+                  </span>
                 ))}
               </div>
-              
-              <div className="flex flex-wrap gap-4 mb-6">
-                <a
-                  href={projects[0].githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gray-800 hover:bg-gray-700 text-white flex items-center gap-2 font-medium py-2 px-4 rounded-lg transition-all hover:shadow-lg hover:shadow-yellow-500/10 border border-gray-700 hover:border-yellow-500/50"
-                >
-                  <GitHub size={18} />
-                  View on GitHub
-                </a>
-                {projects[0].demoLink && (
-                  <a
-                    href= "https://youtu.be/6mh-nzDwF2c"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-gray-900 flex items-center gap-2 font-medium py-2 px-4 rounded-lg transition-all hover:shadow-lg hover:shadow-orange-500/20"
-                  >
-                    <FaYoutube size={18} />
-                    Watch Demo
-                  </a>
-                )}
-              </div>
-              
-              <button 
-                onClick={() => toggleExpand(projects[0].id)}
-                className="text-yellow-400 hover:text-yellow-300 text-sm font-medium flex items-center gap-1 transition-colors"
-              >
-                {expandedId === projects[0].id ? 'Show Less' : 'Learn More'}
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  width="16" 
-                  height="16" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                  className={`transition-transform ${expandedId === projects[0].id ? 'rotate-180' : ''}`}
-                >
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
             </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-3 text-sm font-medium text-[var(--background)] transition-transform hover:-translate-y-0.5"
+              >
+                <Github size={17} />
+                View on GitHub
+                <ArrowUpRight size={15} />
+              </a>
+
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-5 py-3 text-sm font-medium transition-colors hover:border-[var(--foreground)]"
+              >
+                Watch demo
+                <ArrowUpRight size={15} />
+              </a>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setExpanded(!expanded)}
+              aria-expanded={expanded}
+              className="mt-8 flex w-fit items-center gap-2 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+            >
+              {expanded ? "Show less" : "Explore project details"}
+              <ChevronDown
+                size={17}
+                className={`transition-transform duration-200 ${
+                  expanded ? "rotate-180" : ""
+                }`}
+              />
+            </button>
           </div>
-          
-          {/* Expanded Details */}
-          {expandedId === projects[0].id && (
-            <motion.div 
+        </div>
+
+        <AnimatePresence initial={false}>
+          {expanded && (
+            <motion.div
+              key="project-details"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="px-6 pb-6"
+              className="overflow-hidden"
             >
-              <div className="border-t border-gray-700 pt-6 mt-2">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Hackathon Info */}
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                      <Award size={18} className="text-yellow-400" />
-                      Hackathon Details
-                    </h3>
-                    <p className="text-gray-300 mb-2">
-                      <span className="text-gray-400">Event:</span> {projects[0].hackathon}
-                    </p>
-                    <p className="text-gray-300 mb-4">
-                      <span className="text-gray-400">Role:</span> {projects[0].role}
-                    </p>
-                  </div>
-                  
-                  {/* Project Features */}
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                      <CheckCircle size={18} className="text-yellow-400" />
-                      Key Features
-                    </h3>
-                    <ul className="grid grid-cols-1 gap-2">
-                      {projects[0].features.map((feature, i) => (
-                        <motion.li 
-                          key={i}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: i * 0.1 }}
-                          className="flex items-start gap-2"
-                        >
-                          <span className="text-yellow-400 mt-1">•</span>
-                          <span className="text-gray-300">{feature}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
+              <div className="border-t border-[var(--border)] px-6 py-8 md:px-8 md:py-10">
+                <div className="mb-10 max-w-3xl">
+                  <h3 className="text-xl font-medium">About the project</h3>
+                  <p className="mt-3 leading-relaxed text-[var(--muted)]">
+                    {project.longDescription}
+                  </p>
+                  <p className="mt-4 text-sm text-[var(--muted)]">
+                    <span className="font-medium text-[var(--foreground)]">
+                      Role:
+                    </span>{" "}
+                    {project.role}
+                  </p>
+                  <p className="mt-2 text-sm text-[var(--muted)]">
+                    <span className="font-medium text-[var(--foreground)]">
+                      Event:
+                    </span>{" "}
+                    {project.event}
+                  </p>
                 </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                  {/* Challenges */}
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                      <Clock size={18} className="text-yellow-400" />
-                      Challenges Overcome
-                    </h3>
-                    <ul className="grid grid-cols-1 gap-2">
-                      {projects[0].challenges.map((challenge, i) => (
-                        <motion.li 
-                          key={i}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: i * 0.1 }}
-                          className="flex items-start gap-2"
-                        >
-                          <span className="text-yellow-400 mt-1">•</span>
-                          <span className="text-gray-300">{challenge}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  {/* Learnings */}
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                      <Database size={18} className="text-yellow-400" />
-                      Key Learnings
-                    </h3>
-                    <ul className="grid grid-cols-1 gap-2">
-                      {projects[0].learnings.map((learning, i) => (
-                        <motion.li 
-                          key={i} 
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: i * 0.1 }}
-                          className="flex items-start gap-2"
-                        >
-                          <span className="text-yellow-400 mt-1">•</span>
-                          <span className="text-gray-300">{learning}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
+
+                <div className="grid gap-10 md:grid-cols-3">
+                  <DetailList
+                    title="Key features"
+                    icon={CheckCircle}
+                    items={project.features}
+                  />
+                  <DetailList
+                    title="Challenges"
+                    icon={Clock}
+                    items={project.challenges}
+                  />
+                  <DetailList
+                    title="What I learned"
+                    icon={Database}
+                    items={project.learnings}
+                  />
                 </div>
               </div>
             </motion.div>
           )}
-        </div>
-      </motion.div>
+        </AnimatePresence>
+      </motion.article>
 
-      {/* Future Projects Section */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="mt-16"
-      >
-        <motion.h2 
-          variants={itemVariants}
-          className="text-2xl font-bold mb-8 text-center text-gray-300"
-        >
-          More Projects Coming Soon
-        </motion.h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3].map((_, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="bg-gray-800/50 border border-gray-700/50 rounded-xl overflow-hidden h-64 flex flex-col items-center justify-center p-6 relative group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900/30 group-hover:opacity-70 transition-opacity"></div>
-              
-              <div className="relative z-10 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-700/50 flex items-center justify-center">
-                  {index === 0 && <Code className="text-gray-500" size={24} />}
-                  {index === 1 && <Database className="text-gray-500" size={24} />}
-                  {index === 2 && <Users className="text-gray-500" size={24} />}
-                </div>
-                
-                <h3 className="text-lg font-medium text-gray-400 mb-2">
-                  {index === 0 && "Web Development"}
-                  {index === 1 && "Data Science"}
-                  {index === 2 && "AI Solutions"}
-                </h3>
-                
-                <p className="text-gray-500 text-sm">
-                  {index === 0 && "Frontend and backend projects"}
-                  {index === 1 && "Data analysis and visualization"}
-                  {index === 2 && "Machine learning applications"}
-                </p>
-                
-                <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-yellow-500 text-sm">Coming soon</span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
       
-      {/* Contact CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-        className="mt-20 text-center"
-      >
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">Interested in collaborating?</h2>
-        <p className="text-gray-300 mb-6 max-w-xl mx-auto">
-          I'm currently available for freelance projects, internship opportunities, and collaborations.
+      <section className="mt-24">
+        <div className="mb-8 flex items-center gap-4">
+          <span className="text-sm text-[var(--muted)]">02</span>
+          <h2 className="text-2xl font-medium tracking-tight md:text-3xl">
+            Research & applied AI
+          </h2>
+          <div className="h-px flex-1 bg-[var(--border)]" />
+        </div>
+
+        <p className="mb-10 max-w-2xl leading-relaxed text-[var(--muted)]">
+          From research into next-generation networks to AI-powered customer
+          support, these projects reflect my interest in solving practical
+          problems through engineering and intelligent software.
         </p>
-        <a 
-          href="#contact" 
-          className="inline-block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-gray-900 font-medium py-3 px-8 rounded-lg transition-all hover:shadow-lg hover:shadow-orange-500/20"
+
+        <div className="flex flex-col gap-6">
+          {/* Final-year research project */}
+          
+        <article className="overflow-hidden rounded-2xl border border-[var(--border)] transition-colors hover:border-[var(--foreground)]">
+          <div className="grid md:grid-cols-2">
+            {/* Research paper thumbnail */}
+            <div className="flex min-h-[280px] items-center justify-center overflow-hidden bg-white p-4 md:min-h-[420px] md:p-6">
+              <Image
+                src="/egt-gwo-paper-thumbnail.png"
+                alt="First page of the EGT-GWO final-year research paper"
+                width={992}
+                height={571}
+                className="h-auto w-full object-contain transition-transform duration-500 hover:scale-[1.02]"
+              />
+            </div>
+
+            {/* Project information */}
+            <div className="flex flex-col justify-center p-6 md:p-10">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="rounded-full bg-[var(--accent)] px-3 py-1 text-xs font-medium">
+                  Engineering research
+                </span>
+                <span className="text-sm text-[var(--muted)]">
+                  Nov 2024 – Aug 2025
+                </span>
+              </div>
+
+              <h3 className="mt-5 text-2xl font-medium leading-tight tracking-tight md:text-3xl">
+                EGT-GWO for Edge Computing in 6G Networks
+              </h3>
+
+              <p className="mt-4 text-sm leading-relaxed text-[var(--muted)] md:text-base">
+                My final-year research explored a hybrid Evolutionary Game-Theoretic
+                and Grey Wolf Optimization approach to task offloading in 6G-supported
+                mobile edge computing, investigating latency, energy consumption,
+                task deadlines, and edge-server load distribution.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-2">
+                {[
+                  "Python",
+                  "MATLAB",
+                  "Game Theory",
+                  "Grey Wolf Optimization",
+                  "Edge Computing",
+                  "6G Networks",
+                ].map((technology) => (
+                  <span
+                    key={technology}
+                    className="rounded-full border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--muted)]"
+                  >
+                    {technology}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-8">
+                <a
+                  href="https://github.com/jaGaban747/EGT-GWO-Project-Final"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-3 text-sm font-medium text-[var(--background)] transition-transform hover:-translate-y-0.5"
+                >
+                  <Github size={17} />
+                  View on GitHub
+                  <ArrowUpRight size={15} />
+                </a>
+
+                
+                <a
+                  href="/egt-gwo-research-paper.pdf"
+                  download="EGT-GWO-Research-Paper.pdf"
+                  className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-5 py-3 text-sm font-medium transition-colors hover:border-[var(--foreground)]"
+                >
+                  Download research paper (PDF)
+                  <ArrowUpRight size={15} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+          {/* IBM capstone project */}
+          <article className="flex h-full flex-col rounded-2xl border border-[var(--border)] p-6 transition-colors hover:border-[var(--foreground)] md:p-8">
+            <div className="flex items-center justify-between gap-3">
+              <span className="rounded-full border border-[var(--border)] px-3 py-1 text-xs text-[var(--muted)]">
+                IBM capstone project
+              </span>
+              <Database
+                size={20}
+                className="shrink-0 text-[var(--muted)]"
+              />
+            </div>
+
+            <h3 className="mt-6 text-2xl font-medium leading-tight tracking-tight">
+              StimaSaidizi
+            </h3>
+
+            <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">
+              An AI-powered electricity customer-support prototype built
+              around specialized agents for outage and fault guidance,
+              prepaid-token and billing support, and case escalation. The
+              project emphasizes modular APIs, tool-grounded responses, and
+              clear boundaries against inventing customer or service
+              information.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {[
+                "Agentic AI",
+                "Python",
+                "FastAPI",
+                "Streamlit",
+                "IBM watsonx Orchestrate",
+                "Google ADK",
+              ].map((technology) => (
+                <span
+                  key={technology}
+                  className="rounded-full border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--muted)]"
+                >
+                  {technology}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-auto pt-8">
+              <a
+                href="https://github.com/jaGaban747/StimaSaidizi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-3 text-sm font-medium text-[var(--background)] transition-transform hover:-translate-y-0.5"
+              >
+                <Github size={17} />
+                View on GitHub
+                <ArrowUpRight size={15} />
+              </a>
+              <a
+                href="/StimaSaidizi_Final_Report and Test Runbook-1.pdf"
+                download="StimaSaidizi_Final_Report.pdf"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-5 py-3 text-sm font-medium transition-colors hover:border-[var(--foreground)]"
+              >
+                Download project report (PDF)
+                <ArrowUpRight size={15} />
+              </a>
+              <a
+                href="https://stimasaidizi-3xf7dh9e52sstskjqn6exv.streamlit.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium transition-transform hover:-translate-y-0.5"
+              >
+                Live demo
+                <ArrowUpRight size={15} />
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <a
+          href="https://github.com/jaGaban747"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
         >
-          Get in Touch
+          Explore more on GitHub
+          <ArrowUpRight size={16} />
         </a>
-      </motion.div>
-    </div>
+      </section>
+
+
+      <section className="mt-20 rounded-2xl bg-[var(--accent)] p-8 md:p-12">
+        <p className="text-sm uppercase tracking-[0.18em]">Have an idea?</p>
+        <h2 className="mt-4 max-w-2xl text-3xl font-medium leading-tight tracking-tight md:text-4xl">
+          Let's connect and explore what we could build.
+        </h2>
+        <a
+          href="/contact"
+          className="mt-7 inline-flex items-center gap-2 rounded-full border border-[var(--foreground)] px-5 py-3 text-sm font-medium transition-colors hover:bg-[var(--foreground)] hover:text-[var(--background)]"
+        >
+          Get in touch
+          <ArrowDownRight size={17} />
+        </a>
+      </section>
+    </main>
   );
 }

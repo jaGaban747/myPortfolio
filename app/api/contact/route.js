@@ -1,6 +1,8 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -36,7 +38,7 @@ export async function POST(req) {
       return json({ error: "One of the fields is too long." }, 400);
     }
 
-    if (!process.env.RESEND_API_KEY) {
+    if (!resend)  {
       console.error("RESEND_API_KEY is not set.");
       return json({ error: "Email service is not configured." }, 500);
     }

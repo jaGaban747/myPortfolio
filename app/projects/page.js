@@ -272,30 +272,182 @@ export default function Projects() {
         </AnimatePresence>
       </motion.article>
 
+      
       <section className="mt-24">
         <div className="mb-8 flex items-center gap-4">
           <span className="text-sm text-[var(--muted)]">02</span>
           <h2 className="text-2xl font-medium tracking-tight md:text-3xl">
-            More to explore
+            Research & applied AI
           </h2>
           <div className="h-px flex-1 bg-[var(--border)]" />
         </div>
 
-        <p className="max-w-2xl leading-relaxed text-[var(--muted)]">
-          This portfolio will grow as I document more of my work in engineering,
-          software development, cloud, and AI.
+        <p className="mb-10 max-w-2xl leading-relaxed text-[var(--muted)]">
+          From research into next-generation networks to AI-powered customer
+          support, these projects reflect my interest in solving practical
+          problems through engineering and intelligent software.
         </p>
+
+        <div className="flex flex-col gap-6">
+          {/* Final-year research project */}
+          
+        <article className="overflow-hidden rounded-2xl border border-[var(--border)] transition-colors hover:border-[var(--foreground)]">
+          <div className="grid md:grid-cols-2">
+            {/* Research paper thumbnail */}
+            <div className="flex min-h-[280px] items-center justify-center overflow-hidden bg-white p-4 md:min-h-[420px] md:p-6">
+              <Image
+                src="/egt-gwo-paper-thumbnail.png"
+                alt="First page of the EGT-GWO final-year research paper"
+                width={992}
+                height={571}
+                className="h-auto w-full object-contain transition-transform duration-500 hover:scale-[1.02]"
+              />
+            </div>
+
+            {/* Project information */}
+            <div className="flex flex-col justify-center p-6 md:p-10">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="rounded-full bg-[var(--accent)] px-3 py-1 text-xs font-medium">
+                  Engineering research
+                </span>
+                <span className="text-sm text-[var(--muted)]">
+                  Nov 2024 – Aug 2025
+                </span>
+              </div>
+
+              <h3 className="mt-5 text-2xl font-medium leading-tight tracking-tight md:text-3xl">
+                EGT-GWO for Edge Computing in 6G Networks
+              </h3>
+
+              <p className="mt-4 text-sm leading-relaxed text-[var(--muted)] md:text-base">
+                My final-year research explored a hybrid Evolutionary Game-Theoretic
+                and Grey Wolf Optimization approach to task offloading in 6G-supported
+                mobile edge computing, investigating latency, energy consumption,
+                task deadlines, and edge-server load distribution.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-2">
+                {[
+                  "Python",
+                  "MATLAB",
+                  "Game Theory",
+                  "Grey Wolf Optimization",
+                  "Edge Computing",
+                  "6G Networks",
+                ].map((technology) => (
+                  <span
+                    key={technology}
+                    className="rounded-full border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--muted)]"
+                  >
+                    {technology}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-8">
+                <a
+                  href="https://github.com/jaGaban747/EGT-GWO-Project-Final"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-3 text-sm font-medium text-[var(--background)] transition-transform hover:-translate-y-0.5"
+                >
+                  <Github size={17} />
+                  View on GitHub
+                  <ArrowUpRight size={15} />
+                </a>
+
+                
+                <a
+                  href="/egt-gwo-research-paper.pdf"
+                  download="EGT-GWO-Research-Paper.pdf"
+                  className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-5 py-3 text-sm font-medium transition-colors hover:border-[var(--foreground)]"
+                >
+                  Download research paper (PDF)
+                  <ArrowUpRight size={15} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+          {/* IBM capstone project */}
+          <article className="flex h-full flex-col rounded-2xl border border-[var(--border)] p-6 transition-colors hover:border-[var(--foreground)] md:p-8">
+            <div className="flex items-center justify-between gap-3">
+              <span className="rounded-full border border-[var(--border)] px-3 py-1 text-xs text-[var(--muted)]">
+                IBM capstone project
+              </span>
+              <Database
+                size={20}
+                className="shrink-0 text-[var(--muted)]"
+              />
+            </div>
+
+            <h3 className="mt-6 text-2xl font-medium leading-tight tracking-tight">
+              StimaSaidizi
+            </h3>
+
+            <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">
+              An AI-powered electricity customer-support prototype built
+              around specialized agents for outage and fault guidance,
+              prepaid-token and billing support, and case escalation. The
+              project emphasizes modular APIs, tool-grounded responses, and
+              clear boundaries against inventing customer or service
+              information.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {[
+                "Agentic AI",
+                "Python",
+                "FastAPI",
+                "Streamlit",
+                "IBM watsonx Orchestrate",
+                "Google ADK",
+              ].map((technology) => (
+                <span
+                  key={technology}
+                  className="rounded-full border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--muted)]"
+                >
+                  {technology}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-auto pt-8">
+              <a
+                href="https://github.com/jaGaban747/StimaSaidizi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-3 text-sm font-medium text-[var(--background)] transition-transform hover:-translate-y-0.5"
+              >
+                <Github size={17} />
+                View on GitHub
+                <ArrowUpRight size={15} />
+              </a>
+              <a
+                href="/StimaSaidizi_Final_Report and Test Runbook-1.pdf"
+                download="StimaSaidizi_Final_Report.pdf"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-5 py-3 text-sm font-medium transition-colors hover:border-[var(--foreground)]"
+              >
+                Download project report (PDF)
+                <ArrowUpRight size={15} />
+              </a>
+            </div>
+          </article>
+        </div>
 
         <a
           href="https://github.com/jaGaban747"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-flex items-center gap-2 text-sm font-medium underline decoration-[var(--accent)] decoration-2 underline-offset-4"
+          className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
         >
-          Explore my GitHub
+          Explore more on GitHub
           <ArrowUpRight size={16} />
         </a>
       </section>
+
 
       <section className="mt-20 rounded-2xl bg-[var(--accent)] p-8 md:p-12">
         <p className="text-sm uppercase tracking-[0.18em]">Have an idea?</p>
